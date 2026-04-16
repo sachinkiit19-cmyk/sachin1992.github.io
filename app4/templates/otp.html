@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Verify OTP - Mettamoney</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* BOX */
+.otp-container {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* TITLE */
+.otp-container h2 {
+    margin-bottom: 10px;
+}
+
+/* EMAIL TEXT */
+.email-text {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* INPUT */
+.otp-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* BUTTON */
+.otp-container button {
+    width: 100%;
+    padding: 10px;
+    background: #0072ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.otp-container button:hover {
+    background: #005ecb;
+}
+
+/* RESEND */
+.resend {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.resend a {
+    color: #0072ff;
+    text-decoration: none;
+}
+
+/* ERROR */
+.error {
+    background: #ff4d4d;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* SECURITY */
+.security {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #666;
+}
+</style>
+</head>
+
+<body>
+
+<div class="otp-container">
+
+    <!-- LOGO / TITLE -->
+    <h2>Mettamoney</h2>
+    <p>Verify OTP</p>
+
+    <!-- EMAIL INFO -->
+    <div class="email-text">
+        OTP sent to: <strong>{{ email }}</strong>
+    </div>
+
+    <!-- ERROR MESSAGE -->
+    {% if error %}
+    <div class="error">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <!-- OTP FORM -->
+    <form method="POST">
+        <input type="text" name="otp" placeholder="Enter OTP" required>
+        <button type="submit">Verify OTP</button>
+    </form>
+
+    <!-- RESEND -->
+    <div class="resend">
+        Didn't receive OTP? 
+        <a href="/resend-otp">Resend</a>
+    </div>
+
+    <!-- SECURITY NOTE -->
+    <div class="security">
+        🔒 Do not share your OTP with anyone. Your data is secure with us.
+    </div>
+
+</div>
+
+</body>
+</html>

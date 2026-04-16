@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Company Document Upload</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f4f6f9;
+}
+
+.container {
+    width: 85%;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.section {
+    margin-top: 25px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.upload-box {
+    border: 2px dashed #ccc;
+    padding: 12px;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+.upload-box small {
+    display: block;
+    color: gray;
+    font-size: 12px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.hidden {
+    display: none;
+}
+
+.note {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: blue;
+    color: white;
+    border: none;
+    margin-top: 25px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>🏢 Upload Company Documents</h2>
+
+<form method="POST" action="/upload" enctype="multipart/form-data">
+
+<!-- COMPANY DOCS -->
+<div class="section">
+<h3>📂 Company Documents</h3>
+<div class="grid">
+
+<div class="upload-box">
+<label>COI</label>
+<input type="file" name="coi" accept=".pdf,.jpg,.jpeg,.png" onchange="validateFile(this)">
+<small>PDF/JPG/PNG | Max 2MB</small>
+<div class="error"></div>
+</div>
+
+<div class="upload-box">
+<label>MOA</label>
+<input type="file" name="moa" accept=".pdf,.jpg,.jpeg,.png" onchange="validateFile(this)">
+<small>PDF/JPG/PNG | Max 2MB</small>
+<div class="error"></div>
+</div>
+
+<div class="upload-box">
+<label>AOA</label>
+<input type="file" name="aoa" accept=".pdf,.jpg,.jpeg,.png" onchange="validateFile(this)">
+<small>PDF/JPG/PNG | Max 2MB</small>
+<div class="error"></div>
+</div>
+
+<div class="upload-box">
+<label>GST</label>
+<input type="file" name="gst" accept=".pdf,.jpg,.jpeg,.png" onchange="validateFile(this)">
+<small>PDF/JPG/PNG | Max 2MB</small>
+<div class="error"></div>
+</div>
+
+<div class="upload-box">
+<label>Company PAN</label>
+<input type="file" name="pan" accept=".pdf,.jpg,.jpeg,.png" onchange="validateFile(this)">
+<small>PDF/JPG/PNG | Max 2MB</small>
+<div class="error"></div>
+</div>
+
+<div class="upload-box">
+<label>Cancelled Cheque</label>
+<input type="file" name="cheque" accept=".pdf,.jpg,.jpeg,.png" onchange="validateFile(this)">
+<small>PDF/JPG/PNG | Max 2MB</small>
+<div class="error"></div>
+</div>
+
+</div>
+</div>
+
+<!-- DIRECTOR SECTION -->
+<div class="section">
+<h3>👤 Director Details</h3>
+
+<label><b>Number of Directors</b></label>
+<select onchange="showDirector(this.value)">
+<option value="">Select Number</option>
+<option value="1">1 Director</option>
+<option value="2">2 Directors</option>
+<option value="3">3 Directors</option>
+<option value="4">4 Directors</option>
+</select>
+
+<div id="d1" class="hidden"></div>
+<div id="d2" class="hidden"></div>
+<div id="d3" class="hidden"></div>
+<div id="d4" class="hidden"></div>
+
+</div>
+
+<button type="submit">🚀 Submit Documents</button>
+
+<!-- ✅ NOTE ADDED HERE -->
+<div class="note">
+    * Rest documents can be submitted later
+</div>
+
+</form>
+</div>
+
+<script>
+const allowedTypes = ['application/pdf','image/jpeg','image/png'];
+const maxSize = 2 * 1024 * 1024;
+
+function validateFile(input) {
+    const file = input.files[0];
+    const errorDiv = input.parentElement.querySelector('.error');
+
+    if (!file) return;
+
+    errorDiv.textContent = "";
+
+    if (!allowedTypes.includes(file.type)) {
+        errorDiv.textContent = "Only PDF, JPG, PNG allowed!";
+        input.value = "";
+        return;
+    }
+
+    if (file.size > maxSize) {
+        errorDiv.textContent = "File must be under 2MB!";
+        input.value = "";
+    }
+}
+
+function createDirectorHTML(num) {
+    return `
+    <h4>Director ${num} Details</h4>
+    <div class="grid">
+
+    ${fileField(`d${num}_pan`, "PAN")}
+    ${fileField(`d${num}_masked`, "Masked Aadhaar")}
+    ${fileField(`d${num}_unmasked`, "Unmasked Aadhaar")}
+    ${fileField(`d${num}_dl`, "Driving License")}
+    ${fileField(`d${num}_voter`, "Voter ID")}
+    ${fileField(`d${num}_photo`, "Passport Photo")}
+
+    <div><label>Phone</label><input type="text" name="d${num}_phone"></div>
+    <div><label>Email</label><input type="email" name="d${num}_email"></div>
+
+    </div>`;
+}
+
+function fileField(name, label) {
+    return `
+    <div class="upload-box">
+        <label>${label}</label>
+        <input type="file" name="${name}" accept=".pdf,.jpg,.jpeg,.png" onchange="validateFile(this)">
+        <small>PDF/JPG/PNG | Max 2MB</small>
+        <div class="error"></div>
+    </div>`;
+}
+
+function showDirector(num) {
+    let all = ['d1','d2','d3','d4'];
+
+    all.forEach(id => {
+        const el = document.getElementById(id);
+        el.classList.add('hidden');
+        el.innerHTML = "";
+    });
+
+    for (let i = 1; i <= num; i++) {
+        let el = document.getElementById('d' + i);
+        el.classList.remove('hidden');
+        el.innerHTML = createDirectorHTML(i);
+    }
+}
+</script>
+
+</body>
+</html>

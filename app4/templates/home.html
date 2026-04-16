@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mettamoney 3D</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.menu {
+    display: flex;
+    gap: 25px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    color: cyan;
+    transform: scale(1.1);
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 45px;
+}
+
+.hero-images img {
+    width: 200px;
+    border-radius: 15px;
+    transform: rotateY(20deg);
+    transition: 0.5s;
+}
+
+.hero-images img:hover {
+    transform: rotateY(0deg) scale(1.1);
+}
+
+/* GLASS CARD */
+.glass {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* ABOUT */
+#about {
+    display: flex;
+    margin: 30px;
+    gap: 20px;
+}
+
+#about img {
+    width: 40%;
+    border-radius: 15px;
+}
+
+/* WHY */
+#why {
+    text-align: center;
+    padding: 50px;
+}
+
+.why-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.why-card {
+    width: 200px;
+    transition: 0.3s;
+}
+
+.why-card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+/* MERCHANT */
+#merchant {
+    text-align: center;
+    padding: 50px;
+}
+
+.merchant-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.merchant-card {
+    width: 220px;
+    transition: 0.4s;
+}
+
+.merchant-card:hover {
+    transform: rotateY(10deg) scale(1.05);
+}
+
+/* OTP */
+.otp-box {
+    position: fixed;
+    right: 30px;
+    top: 35%;
+    width: 250px;
+}
+
+.otp-box input {
+    width: 100%;
+    padding: 10px;
+}
+
+.otp-box button {
+    width: 100%;
+    padding: 10px;
+    background: cyan;
+    border: none;
+    cursor: pointer;
+}
+
+/* PARTNERS */
+.partner-track {
+    display: flex;
+    animation: scroll 15s linear infinite;
+}
+
+.partner-track img {
+    width: 120px;
+    margin: 20px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+@keyframes scroll {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+/* FOOTER */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #111;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+}
+
+.footer a {
+    color: white;
+    margin-left: 15px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    .hero, #about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-images img {
+        width: 150px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Mettamoney</div>
+    <div class="menu">
+        <a onclick="scrollToSection('about')">About</a>
+        <a onclick="scrollToSection('why')">Why Us</a>
+        <a onclick="scrollToSection('merchant')">Features</a>
+        <a onclick="scrollToSection('partners')">Partners</a>
+        <a onclick="goLogin()">Login</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-text">
+        <h1>Welcome to Mettamoney</h1>
+        <p>Modern UPI Merchant Platform</p>
+    </div>
+
+    <div class="hero-images">
+        <img src="https://images.unsplash.com/photo-1616077168079-7e09c0f0c0c6">
+        <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="glass">
+    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d">
+    <div>
+        <h2>About Us</h2>
+        <p>Mettamoney provides seamless UPI onboarding for merchants.</p>
+    </div>
+</div>
+
+<!-- WHY -->
+<div id="why">
+    <h2>Why Choose Mettamoney</h2>
+    <div class="why-grid">
+        <div class="why-card glass">Secure</div>
+        <div class="why-card glass">Fast</div>
+        <div class="why-card glass">Trusted</div>
+    </div>
+</div>
+
+<!-- MERCHANT -->
+<div id="merchant">
+    <h2>Merchant Features</h2>
+    <div class="merchant-grid">
+        <div class="merchant-card glass">QR Payments</div>
+        <div class="merchant-card glass">Analytics</div>
+        <div class="merchant-card glass">Multi Payment</div>
+        <div class="merchant-card glass">Security</div>
+    </div>
+</div>
+
+<!-- OTP -->
+<div class="otp-box glass">
+    <h3>Email Verification</h3>
+    <form method="POST" action="/">
+        <input type="email" name="email" required>
+        <br><br>
+        <button type="submit">Send OTP</button>
+    </form>
+</div>
+
+<!-- PARTNERS -->
+<div id="partners">
+    <div class="partner-track">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/UPI-Logo-vector.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/PhonePe_Logo.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Paytm_logo.png">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_Pay_Logo.svg">
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <div>Email: support@mettamoney.com</div>
+    <div>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+    </div>
+</div>
+
+<script>
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior: "smooth"});
+}
+
+function goLogin() {
+    window.location.href = "/login";
+}
+</script>
+
+</body>
+</html>

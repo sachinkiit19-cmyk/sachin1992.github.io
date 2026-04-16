@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+    font-family: Arial;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card h2 {
+    text-align: center;
+    color: #333;
+}
+
+.section-title {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-group {
+    margin-bottom: 12px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+</style>
+
+<div class="container">
+<div class="card">
+
+<h2>Merchant Onboarding</h2>
+
+<form method="POST">
+
+<!-- BUSINESS DETAILS -->
+<div class="section-title">1. Business Details</div>
+
+<div class="input-group">
+<input type="text" name="business_name" placeholder="Business Name">
+</div>
+
+<div class="input-group">
+<select name="business_type">
+<option value="">Business Type</option>
+<option>Proprietorship</option>
+<option>Partnership</option>
+<option>Pvt Ltd</option>
+<option>LLP</option>
+</select>
+</div>
+
+<div class="input-group">
+<input type="text" name="industry" placeholder="Industry Category">
+</div>
+
+<!-- OWNER -->
+<div class="section-title">2. Owner Details</div>
+
+<div class="input-group">
+<input type="text" name="owner_name" placeholder="Full Name" required>
+</div>
+
+<div class="input-group">
+<input type="text" name="mobile" placeholder="Mobile Number" required>
+</div>
+
+<div class="input-group">
+<input type="email" name="email" placeholder="Email Address" required>
+</div>
+
+<button type="submit" class="btn">Continue</button>
+
+</form>
+
+</div>
+</div>
+
+{% endblock %}

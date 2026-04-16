@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document Status</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.card {
+    width: 450px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.success { color: #00ffae; }
+.error { color: #ff6b6b; }
+
+ul { list-style: none; }
+
+li {
+    padding: 8px;
+    margin-bottom: 6px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.badge {
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.ok { background: #00ffae; color: black; }
+.miss { background: #ff6b6b; }
+
+.btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 12px;
+    border-radius: 10px;
+    background: white;
+    color: black;
+    text-decoration: none;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h2>📄 Document Status</h2>
+
+<!-- SUCCESS -->
+<div class="section">
+<h3 class="success">✅ Submitted Successfully</h3>
+<ul>
+{% if uploaded %}
+    {% for doc in uploaded %}
+    <li>
+        {{ doc }}
+        <span class="badge ok">Done</span>
+    </li>
+    {% endfor %}
+{% else %}
+    <li>No documents uploaded</li>
+{% endif %}
+</ul>
+</div>
+
+<!-- MISSING -->
+<div class="section">
+<h3 class="error">❌ Missing Documents</h3>
+<ul>
+{% if missing %}
+    {% for doc in missing %}
+    <li>
+        {{ doc }}
+        <span class="badge miss">Missing</span>
+    </li>
+    {% endfor %}
+{% else %}
+    <li>No missing documents 🎉</li>
+{% endif %}
+</ul>
+</div>
+
+<a href="/upload" class="btn">⬅ Upload Again</a>
+
+</div>
+
+</body>
+</html>

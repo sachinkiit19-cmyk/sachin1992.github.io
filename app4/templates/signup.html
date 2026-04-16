@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sign Up - Mettamoney</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+}
+
+.navbar h2 {
+    margin: 0;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar ul li a:hover {
+    color: #00c6ff;
+}
+
+/* CENTER BOX */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+/* SIGNUP BOX */
+.signup-box {
+    width: 380px;
+    padding: 30px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+/* INPUTS */
+.signup-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+/* BUTTON */
+.signup-box button {
+    width: 100%;
+    padding: 10px;
+    background: #00c6ff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-box button:hover {
+    background: #0094cc;
+}
+
+/* USER TYPE */
+.user-type {
+    text-align: left;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+/* LINKS */
+.links {
+    margin-top: 10px;
+}
+
+.links a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+/* SECURITY */
+.security {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+/* ERROR */
+.error {
+    background: #ff4d4d;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>Mettamoney</h2>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+    </ul>
+</div>
+
+<!-- CENTER FORM -->
+<div class="container">
+    <div class="signup-box">
+
+        <h2>Create Account</h2>
+
+        <!-- ERROR -->
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+
+            <!-- USER TYPE -->
+            <div class="user-type">
+                <strong>Sign up as:</strong><br>
+                <input type="radio" name="user_type" value="individual" required> Individual
+                <input type="radio" name="user_type" value="company"> Company
+                <input type="radio" name="user_type" value="partner"> Partner
+            </div>
+
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="mobile" placeholder="Mobile Number" required>
+
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+            <div style="font-size:13px; margin-top:10px;">
+                <input type="checkbox" required> I agree to Terms & Conditions
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <div class="links">
+            Already have an account? <a href="/login">Login</a>
+        </div>
+
+        <div class="security">
+            🔒 Your data is  protected with us
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

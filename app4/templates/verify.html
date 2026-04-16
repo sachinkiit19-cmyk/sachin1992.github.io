@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Verify OTP - Mettamoney</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* CENTER */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+
+/* BOX */
+.verify-box {
+    width: 360px;
+    padding: 30px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.75);
+    color: white;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* INPUT */
+.verify-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+/* BUTTON */
+.verify-box button {
+    width: 100%;
+    padding: 12px;
+    background: #00c6ff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.verify-box button:hover {
+    background: #0094cc;
+}
+
+/* TEXT */
+.email-text {
+    font-size: 14px;
+    color: #ddd;
+}
+
+/* RESEND */
+.resend {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.resend a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+/* ERROR */
+.error {
+    background: #ff4d4d;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* SUCCESS */
+.success {
+    background: #28a745;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* TIMER */
+.timer {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ffcc00;
+}
+
+/* SECURITY */
+.security {
+    margin-top: 15px;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* BACK LINKS */
+.back-links {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.back-links a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>Mettamoney</h2>
+    <ul>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Signup</a></li>
+    </ul>
+</div>
+
+<!-- CENTER -->
+<div class="container">
+<div class="verify-box">
+
+<!-- LOGO / TITLE -->
+<h2>Mettamoney</h2>
+<p>Verify OTP</p>
+
+<!-- EMAIL -->
+<div class="email-text">
+    OTP sent to: <strong>{{ email }}</strong>
+</div>
+
+<!-- ERROR -->
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
+
+<!-- SUCCESS -->
+{% if success %}
+<div class="success">{{ success }}</div>
+{% endif %}
+
+<!-- FORM -->
+<form method="POST">
+    <input type="text" name="otp" placeholder="Enter OTP" required>
+    <button type="submit">Verify</button>
+</form>
+
+<!-- TIMER -->
+<div class="timer">
+    OTP valid for <span id="countdown">60</span> seconds
+</div>
+
+<!-- RESEND -->
+<div class="resend">
+    Didn't receive OTP? <a href="/resend-otp">Resend</a>
+</div>
+
+<!-- BACK -->
+<div class="back-links">
+    <a href="/login">Back to Login</a> |
+    <a href="/signup">Signup</a>
+</div>
+
+<!-- SECURITY -->
+<div class="security">
+    🔒 Do not share your OTP. Your data is secure with us.
+</div>
+
+</div>
+</div>
+
+<!-- TIMER SCRIPT -->
+<script>
+let time = 60;
+let countdown = document.getElementById("countdown");
+
+let timer = setInterval(() => {
+    time--;
+    countdown.innerText = time;
+
+    if (time <= 0) {
+        clearInterval(timer);
+        countdown.innerText = "Expired";
+    }
+}, 1000);
+</script>
+
+</body>
+</html>

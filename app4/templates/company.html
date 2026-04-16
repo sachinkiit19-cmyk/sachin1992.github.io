@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Company Document Upload</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+.container {
+    width: 85%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+h2 {
+    text-align: center;
+}
+.section {
+    margin-top: 25px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.upload-box {
+    border: 2px dashed #ccc;
+    padding: 15px;
+    border-radius: 8px;
+}
+.upload-box:hover {
+    border-color: #007bff;
+    background: #f0f8ff;
+}
+label {
+    font-weight: bold;
+}
+small {
+    color: #666;
+    display: block;
+    margin-top: 5px;
+}
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+button:hover {
+    background: #0056b3;
+}
+.hidden {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h2>🏢 Company Document Upload</h2>
+
+<form method="POST" enctype="multipart/form-data">
+
+<!-- COMPANY DOCUMENTS -->
+<div class="section">
+<h3>📂 Company Documents</h3>
+
+<div class="grid">
+
+<div class="upload-box">
+<label>Certificate of Incorporation (COI)</label>
+<input type="file" name="coi">
+<small>Type: PDF/JPG/PNG | Max Size: 5MB</small>
+</div>
+
+<div class="upload-box">
+<label>Memorandum of Association (MOA)</label>
+<input type="file" name="moa">
+<small>Type: PDF/JPG/PNG | Max Size: 5MB</small>
+</div>
+
+<div class="upload-box">
+<label>Articles of Association (AOA)</label>
+<input type="file" name="aoa">
+<small>Type: PDF/JPG/PNG | Max Size: 5MB</small>
+</div>
+
+<div class="upload-box">
+<label>GST Certificate</label>
+<input type="file" name="gst">
+<small>Type: PDF/JPG/PNG | Max Size: 5MB</small>
+</div>
+
+<div class="upload-box">
+<label>Company PAN</label>
+<input type="file" name="pan">
+<small>Type: PDF/JPG/PNG | Max Size: 5MB</small>
+</div>
+
+<div class="upload-box">
+<label>Cancelled Cheque</label>
+<input type="file" name="cheque">
+<small>Type: PDF/JPG/PNG | Max Size: 5MB</small>
+</div>
+
+</div>
+</div>
+
+<!-- DIRECTOR SECTION -->
+<div class="section">
+<h3>👤 Director Documents</h3>
+
+<label>Select Director</label>
+<select onchange="showDirector(this.value)">
+    <option value="">-- Select Director --</option>
+    <option value="1">Director 1</option>
+    <option value="2">Director 2</option>
+    <option value="3">Director 3</option>
+    <option value="4">Director 4</option>
+</select>
+
+<!-- DIRECTOR 1 -->
+<div id="director1" class="director hidden">
+<h4>Director 1</h4>
+<div class="grid">
+    <div class="upload-box">
+        <label>PAN</label>
+        <input type="file" name="d1_pan">
+        <small>Type: PDF/JPG/PNG</small>
+    </div>
+
+    <div class="upload-box">
+        <label>Aadhar</label>
+        <input type="file" name="d1_aadhar">
+        <small>Type: PDF/JPG/PNG</small>
+    </div>
+
+    <div class="upload-box">
+        <label>Driving License</label>
+        <input type="file" name="d1_dl">
+        <small>Type: PDF/JPG/PNG</small>
+    </div>
+
+    <div class="upload-box">
+        <label>Voter ID</label>
+        <input type="file" name="d1_voter">
+        <small>Type: PDF/JPG/PNG</small>
+    </div>
+
+    <div class="upload-box">
+        <label>Passport Photo</label>
+        <input type="file" name="d1_photo">
+        <small>Type: JPG/PNG | Max Size: 2MB</small>
+    </div>
+</div>
+</div>
+
+<!-- DIRECTOR 2 -->
+<div id="director2" class="director hidden">
+<h4>Director 2</h4>
+<div class="grid">
+    <div class="upload-box"><label>PAN</label><input type="file" name="d2_pan"></div>
+    <div class="upload-box"><label>Aadhar</label><input type="file" name="d2_aadhar"></div>
+    <div class="upload-box"><label>DL</label><input type="file" name="d2_dl"></div>
+    <div class="upload-box"><label>Voter ID</label><input type="file" name="d2_voter"></div>
+    <div class="upload-box"><label>Photo</label><input type="file" name="d2_photo"></div>
+</div>
+</div>
+
+<!-- DIRECTOR 3 -->
+<div id="director3" class="director hidden">
+<h4>Director 3</h4>
+<div class="grid">
+    <div class="upload-box"><label>PAN</label><input type="file" name="d3_pan"></div>
+    <div class="upload-box"><label>Aadhar</label><input type="file" name="d3_aadhar"></div>
+    <div class="upload-box"><label>DL</label><input type="file" name="d3_dl"></div>
+    <div class="upload-box"><label>Voter ID</label><input type="file" name="d3_voter"></div>
+    <div class="upload-box"><label>Photo</label><input type="file" name="d3_photo"></div>
+</div>
+</div>
+
+<!-- DIRECTOR 4 -->
+<div id="director4" class="director hidden">
+<h4>Director 4</h4>
+<div class="grid">
+    <div class="upload-box"><label>PAN</label><input type="file" name="d4_pan"></div>
+    <div class="upload-box"><label>Aadhar</label><input type="file" name="d4_aadhar"></div>
+    <div class="upload-box"><label>DL</label><input type="file" name="d4_dl"></div>
+    <div class="upload-box"><label>Voter ID</label><input type="file" name="d4_voter"></div>
+    <div class="upload-box"><label>Photo</label><input type="file" name="d4_photo"></div>
+</div>
+</div>
+
+</div>
+
+<button type="submit">🚀 Submit Documents</button>
+
+</form>
+</div>
+
+<script>
+function showDirector(num) {
+    let all = document.querySelectorAll(".director");
+    all.forEach(d => d.classList.add("hidden"));
+
+    if(num){
+        document.getElementById("director" + num).classList.remove("hidden");
+    }
+}
+</script>
+
+</body>
+</html>

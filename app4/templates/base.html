@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MettaMoney</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+
+        .navbar {
+            background: #2c3e50;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: #f1c40f;
+        }
+
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ✅ MENU -->
+<div class="navbar">
+    <div>
+        <a href="/">Home</a>
+        <a href="/register">Register</a>
+        <a href="/upload">Upload</a>
+    </div>
+
+    <div>
+        <a href="/login">Login</a>
+    </div>
+</div>
+
+<!-- ✅ PAGE CONTENT -->
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

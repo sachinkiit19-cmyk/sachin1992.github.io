@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - Mettamoney</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* SPLIT SCREEN */
+.main {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT SIDE */
+.left {
+    width: 50%;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.left h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.left p {
+    font-size: 18px;
+}
+
+/* RIGHT SIDE */
+.right {
+    width: 50%;
+    background: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LOGIN BOX */
+.login-box {
+    width: 320px;
+    padding: 30px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* INPUTS */
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+/* BUTTON */
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    background: #00c6ff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background: #0094cc;
+}
+
+/* LINKS */
+.links {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.links a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+/* SECURITY */
+.security {
+    margin-top: 15px;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* ERROR MESSAGE */
+.error {
+    background: #ff4d4d;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="main">
+
+    <!-- LEFT SIDE (LOGO + TAGLINE) -->
+    <div class="left">
+        <div>
+            <h1>Mettamoney</h1>
+            <p>Secure Digital Financial Platform</p>
+            <p>Fast • Safe • Reliable</p>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+        <div class="login-box">
+
+            <h2>Login</h2>
+
+            <!-- ERROR MESSAGE (Flask) -->
+            {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <!-- LOGIN FORM -->
+            <form method="POST">
+                <input type="email" name="email" placeholder="Enter Email" required>
+                <input type="password" name="password" placeholder="Enter Password" required>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <!-- LINKS -->
+            <div class="links">
+                <a href="/forgot-password">Forgot Password?</a>
+            </div>
+
+            <div class="links">
+                Don't have an account? 
+                <a href="/signup">Sign Up</a>
+            </div>
+
+            <!-- SECURITY MESSAGE -->
+            <div class="security">
+                🔒 Your data is encrypted and सुरक्षित with us
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

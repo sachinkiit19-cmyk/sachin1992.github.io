@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+body {
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+    margin: 0;
+    font-family: Arial;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    width: 420px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #43cea2;
+    box-shadow: 0 0 5px #43cea2;
+}
+
+.file-info {
+    font-size: 12px;
+    color: gray;
+    margin-top: 3px;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #43cea2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: #2bbf9c;
+}
+</style>
+
+<div class="container">
+    <div class="card">
+
+        <h2>Individual Registration</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <!-- Name (Only required field OR make optional if you want fully free form) -->
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" name="name">
+            </div>
+
+            <!-- Mobile -->
+            <div class="input-group">
+                <label>Mobile Number</label>
+                <input type="tel" name="mobile">
+            </div>
+
+            <!-- Email -->
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email">
+            </div>
+
+            <!-- Aadhaar -->
+            <div class="input-group">
+                <label>Aadhaar Upload</label>
+                <input type="file" name="aadhaar" accept=".pdf,.jpg,.jpeg,.png">
+                <div class="file-info">Optional (PDF, JPG, PNG - Max 2MB)</div>
+            </div>
+
+            <!-- PAN -->
+            <div class="input-group">
+                <label>PAN Card Upload</label>
+                <input type="file" name="pan" accept=".pdf,.jpg,.jpeg,.png">
+                <div class="file-info">Optional (PDF, JPG, PNG - Max 2MB)</div>
+            </div>
+
+            <!-- Cancelled Cheque -->
+            <div class="input-group">
+                <label>Cancelled Cheque Upload</label>
+                <input type="file" name="cheque" accept=".pdf,.jpg,.jpeg,.png">
+                <div class="file-info">Optional (PDF, JPG, PNG - Max 2MB)</div>
+            </div>
+
+            <button type="submit" class="btn">Submit</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
